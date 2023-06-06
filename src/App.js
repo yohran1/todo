@@ -14,7 +14,10 @@ function App() {
 
   function addItem(event){
       event.preventDefault()
-      setItems([text])
+      if(text){
+        setItems([...items, text])
+        setText("")
+      }
   }
 
 
@@ -22,7 +25,7 @@ function App() {
     <div className="container">
         <h1>TodoList</h1>
         <form >
-          <input onChange={manejarMudanca} type="text" placeholder="Digite o item!"></input>
+          <input onChange={manejarMudanca} value={text} type="text" placeholder="Digite o item!"></input>
           <button onClick={addItem}>Adicionar</button>
         </form>
         <ul>
