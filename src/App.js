@@ -5,22 +5,28 @@ import './App.css';
 function App() {
 
   const [text, setText] = useState("")
+  const [items, setItems] = useState([])
 
   function manejarMudanca(event){
-      let text = event.target.value
-      setText(text)
+      let t = event.target.value
+      setText(t)
+  }
+
+  function addItem(event){
+      event.preventDefault()
+      setItems([text])
   }
 
 
   return (
     <div className="container">
         <h1>TodoList</h1>
-        <form>
+        <form >
           <input onChange={manejarMudanca} type="text" placeholder="Digite o item!"></input>
-          <button>Adicionar</button>
+          <button onClick={addItem}>Adicionar</button>
         </form>
         <ul>
-          <li>{text}</li>
+          {items.map(item => <li>{item}</li>)}
         </ul>
     </div>
   );
