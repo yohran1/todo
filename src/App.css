@@ -19,3 +19,16 @@ button:hover{
   color: white;
   transition: background 0.5s;
 }
+img{
+  width: 20px;
+  height: 20px;
+}
+.done{
+  text-decoration: line-through;
+}
+#done{
+  background-color: transparent;
+}
+#delete{
+  background-color: transparent;
+}

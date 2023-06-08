@@ -15,17 +15,26 @@ function App() {
     setItems([...items, item])
   }
 
-  function onItemDeleted(item){
-    let filtroItems = items.filter(itemm => itemm.id != item.id)
+  function onDeleteItem(item){
+    let itensFiltrado = items.filter((itemm) => itemm.id != item.id)
+    setItems(itensFiltrado)
+  }
 
-    setItems(filtroItems)
+  function onDone(item){
+    let upDateItems = items.map( itemm => {
+      if(itemm.id === item.id){
+        itemm.done = !itemm.done
+      }
+        return itemm 
+    })
+    setItems(upDateItems)
   }
 
   return (
     <div className="container">
         <h1>TodoList</h1>
         <Form onAddItem={onAddItem}></Form>
-        <List onItemDeleted={onItemDeleted} items={items}></List>
+        <List onDone={onDone} onDeleteItem={onDeleteItem} items={items}></List>
     </div>
   );
 }

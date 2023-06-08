@@ -1,14 +1,26 @@
 import React from "react"
 
+
 function List(props){
+
+    function DoneImg(props){
+        if(props.done){
+            return (<img alt="done" src="./assets/winB.png"></img>)
+        }else{
+            return (<img alt="undone" src="./assets/win.png"></img>)
+        }
+    }
 
 
     return (
         <ul>
           {props.items.map((item) => 
-          <li key={item.id}>
+          <li className={item.done ? "done" : ""} key={item.id}>
+
             {item.text}
-            <button onClick={() => props.onItemDeleted(item)}><img src="./exemplo.png"></img></button>
+            <button id="done" onClick={()=> props.onDone(item)}><DoneImg done={item.done}></DoneImg></button>
+            <button id="delete" onClick={()=> {props.onDeleteItem(item)}}><img alt="delete" src="./assets/lixeira.png"></img></button>
+           
             </li>)}
         </ul>
     )
