@@ -1,5 +1,5 @@
 import React from "react"
-
+import Card from "./Card"
 
 function List(props){
 
@@ -15,12 +15,14 @@ function List(props){
     return (
         <ul>
           {props.items.map((item) => 
-          <li className={item.done ? "done" : ""} key={item.id}>
-
-            {item.text}
-            <button id="done" onClick={()=> props.onDone(item)}><DoneImg done={item.done}></DoneImg></button>
-            <button id="delete" onClick={()=> {props.onDeleteItem(item)}}><img alt="delete" src="./assets/lixeira.png"></img></button>
-           
+          <li key={item.id}>
+            <Card className={item.done ? "done item" : "item"}>
+                {item.text}
+                <div>
+                    <button id="done" onClick={()=> props.onDone(item)}><DoneImg done={item.done}></DoneImg></button>
+                    <button id="delete" onClick={()=> {props.onDeleteItem(item)}}><img alt="delete" src="./assets/lixeira.png"></img></button>
+                </div>
+            </Card>
             </li>)}
         </ul>
     )

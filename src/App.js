@@ -9,9 +9,7 @@ function App() {
   const [items, setItems] = useState([])
 
   function onAddItem(text){
-
     let item = new Item(text)
-
     setItems([...items, item])
   }
 
