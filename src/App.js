@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-      <h1>TodoList</h1>
+      <h1>Tarefas | Metas</h1>
       <button onClick={()=> {setMostrarModal(true)}} className="addButton">+</button>
       </header>
         {/* <Form onAddItem={onAddItem}></Form> */}
