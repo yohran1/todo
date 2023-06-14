@@ -3,11 +3,13 @@ import Form from "./components/Form";
 import List from "./components/List";
 import Item from "./components/item";
 import './components/App.css';
+import Modal from "./components/Modal";
 
 const SAVE_ITEMS = "saveItems"
 
 function App() {
 
+  const [mostrarModal, setMostrarModal] = useState(false)
   const [items, setItems] = useState([])
 
   useEffect(()=>{
@@ -24,6 +26,8 @@ function App() {
   function onAddItem(text){
     let item = new Item(text)
     setItems([...items, item])
+
+    onHideModal()
   }
 
   function onDeleteItem(item){
@@ -41,11 +45,19 @@ function App() {
     setItems(upDateItems)
   }
 
+  function onHideModal(){
+      setMostrarModal(false)
+  }
+
   return (
     <div className="container">
-        <h1>TodoList</h1>
-        <Form onAddItem={onAddItem}></Form>
+      <header className="header">
+      <h1>TodoList</h1>
+      <button onClick={()=> {setMostrarModal(true)}} className="addButton">+</button>
+      </header>
+        {/* <Form onAddItem={onAddItem}></Form> */}
         <List onDone={onDone} onDeleteItem={onDeleteItem} items={items}></List>
+        <Modal mostrarModal={mostrarModal} onHideModal={onHideModal}><Form onAddItem={onAddItem}></Form></Modal>
     </div>
   );
 }
