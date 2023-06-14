@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import Form from "./Form";
-import List from "./List";
-import Item from "./item"
-import './App.css';
-
+import Form from "./components/Form";
+import List from "./components/List";
+import Item from "./components/item"
+import './components/App.css';
 function App() {
 
   const [items, setItems] = useState([])
