@@ -8,7 +8,6 @@ function Modal(props){
         if(target.id == "modal"){
             props.onHideModal()
         }
-        console.log(target)
       }
 
     return(

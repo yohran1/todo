@@ -26,7 +26,6 @@ function App() {
   function onAddItem(text){
     let item = new Item(text)
     setItems([...items, item])
-
     onHideModal()
   }
 
