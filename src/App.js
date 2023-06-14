@@ -1,11 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Form from "./components/Form";
 import List from "./components/List";
-import Item from "./components/item"
+import Item from "./components/item";
 import './components/App.css';
+
+const SAVE_ITEMS = "saveItems"
+
 function App() {
 
   const [items, setItems] = useState([])
+
+  useEffect(()=>{
+    let saveItems = JSON.parse(localStorage.getItem(SAVE_ITEMS))
+    if(saveItems){
+      setItems(saveItems)
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem(SAVE_ITEMS, JSON.stringify(items))
+  },[items])
 
   function onAddItem(text){
     let item = new Item(text)
