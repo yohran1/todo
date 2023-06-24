@@ -10,6 +10,6 @@ export function deleteItem(id){
     return {type: 'DELETE_ITEM', payload: id}
 }
 
-export function muncaDone(id){
+export function mundancaDone(id){
     return {type: 'MUDANÇA_DONE', payload: id}
 }

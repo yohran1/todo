@@ -1,26 +1,32 @@
 import React, { useState } from "react"
+import { addItem } from "../actions/listAction"
+import { useDispatch } from "react-redux"
+
 
 
 function Form(props){
 
   const [text, setText] = useState("")
+  const dispatch = useDispatch()
 
 function valorInput(event){
     let valorInput = event.target.value
     setText(valorInput)
 }
-function addItem(event){
+function addItemEvent(event){
   event.preventDefault()
   if(text){
-    props.onAddItem(text)
+    dispatch(addItem(text))
+    // props.onAddItem(text)
     setText("")
+    props.onHideModal()
   }
 }
 
   return(
     <form>
         <input onChange={valorInput} value={text} type="text" placeholder="Digite o Item!"></input>
-        <button onClick={addItem}>Adicionar</button>
+        <button onClick={addItemEvent}>Adicionar</button>
     </form>
   )
 }

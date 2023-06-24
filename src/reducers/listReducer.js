@@ -5,7 +5,7 @@ export default (state = [], action)=>{
         case 'ADD_ITEM':
             return [...state, action.payload]
         case 'DELETE_ITEM':
-            return state.filter(item => item.id != id)
+            return state.filter(item => item.id != action.payload)
         case 'MUDANÇA_DONE':
             return state.map(item => {
                 if(item.id === action.payload){
