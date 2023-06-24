@@ -8,9 +8,10 @@ function Modal(props){
         if(target.id == "modal"){
             props.onHideModal()
         }
-      }
+    }
 
-    return(
+
+    return (
         <div id="modal" onClick={hideModal} className={props.mostrarModal? "modal" : "modal hideModal"}>
             <Card className="cardModal">
                 {props.children}
@@ -18,4 +19,32 @@ function Modal(props){
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+// function Modal(props){
+
+//     function hideModal(event){
+//         let target = event.target
+//         if(target.id == "modal"){
+//             props.onHideModal()
+//         }
+//       }
+
+//     return(
+//         <div id="modal" onClick={hideModal} className={props.mostrarModal? "modal" : "modal hideModal"}>
+//             <Card className="cardModal">
+//                 {props.children}
+//             </Card>
+//         </div>
+//     )
+// }
 export default Modal
