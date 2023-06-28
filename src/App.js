@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Form from "./components/Form";
 import List from "./components/List";
-import Item from "./components/item";
 import './components/App.css';
 import Modal from "./components/Modal";
 
@@ -9,46 +8,30 @@ import { legacy_createStore } from "redux"
 import { Provider } from "react-redux"
 import listReducer from "./reducers/listReducer";
 
-const store = legacy_createStore(listReducer)
-
 const SAVED_ITEM = "saveItems"
+
+function persistirState(state){
+  localStorage.setItem(SAVED_ITEM, JSON.stringify(state))
+}
+
+function carregarState(){
+  const atualState = localStorage.getItem(SAVED_ITEM)
+  if(atualState){
+    return JSON.parse(atualState)
+  }else{
+    return []
+  }
+}
+const store = legacy_createStore(listReducer, carregarState())
+
+store.subscribe(()=>{
+  persistirState(store.getState())
+})
+
 
 function App(){
 
-  const [items, setItems] = useState([])
   const [mostrarModal, setMostrarModal] = useState(false)
-
-  // useEffect(()=>{
-  //     let saveItems = JSON.parse(localStorage.getItem(SAVED_ITEM))
-  //     if(saveItems){
-  //       setItems(saveItems)
-  //     }
-  // },[])
-
-  // useEffect(()=>{
-  //     localStorage.setItem(SAVED_ITEM, JSON.stringify(items))
-  // },[items])
-
-  // function onAddItem(text){
-  //   let item = new Item(text)
-  //   setItems([...items, item])
-  //   setMostrarModal()
-    
-  // }
-
-  // function deleteItem(item){
-  //     let itemsFiltrados = items.filter(itemm => itemm.id != item.id)
-  //     setItems(itemsFiltrados)
-  // }
-  // function onDone(item){
-  //   let upDateItems = items.map(itemm => {
-  //     if(itemm.id === item.id){
-  //       itemm.done = !itemm.done
-  //     }
-  //     return itemm
-  //   })
-  //   setItems(upDateItems)
-  // }
 
   function onHideModal(){
     setMostrarModal(false)

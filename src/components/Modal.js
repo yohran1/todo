@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import Card from "./Card"
 
 function Modal(props){
 
     function hideModal(event){
         let target = event.target
-        if(target.id == "modal"){
+        if(target.id === "modal"){
             props.onHideModal()
         }
     }
